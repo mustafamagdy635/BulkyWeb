@@ -1,0 +1,106 @@
+﻿@model Company  
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<div class="card shadow border-0 mt-4">
+    <div class=" card-header bg-secondary bg-gradient m-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-primary ">@(Model.Id != 0 ? "Update" : "Create")  Company</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+
+        <form asp-action="Upser" >
+            <input asp-for="Id" hidden />
+           
+
+            <div class="row">
+                <div class="col-10">
+                    <div class="border p-3 ">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+
+                        <div class=" row form-floating py-2 col-12">
+                            <input asp-for="Name" class="form-control shadow border-0" />
+                            <label asp-for="Name" class="control-label ms-2"></label>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class=" form-floating py-2 col-12">
+                            <input asp-for="StreetAddress" class="form-control  shadow border-0" />
+                            <label asp-for="StreetAddress" class="control-label ms-2"></label>
+                            <span asp-validation-for="StreetAddress" class="text-danger"></span>
+                        </div>
+                       
+                        <div class=" row form-floating py-2 col-12">
+                            <input asp-for="City" class="form-control shadow border-0" />
+                            <label asp-for="City" class="control-label ms-2"></label>
+                            <span asp-validation-for="City" class="text-danger"></span>
+                        </div>
+                        <div class=" row form-floating py-2 col-12">
+                            <input asp-for="State" class="form-control shadow border-0" />
+                            <label asp-for="State" class="control-label ms-2"></label>
+                            <span asp-validation-for="State" class="text-danger"></span>
+                        </div>
+                        <div class=" row form-floating py-2 col-12">
+                            <input asp-for="PostalCode" class="form-control shadow border-0" />
+                            <label asp-for="PostalCode" class="control-label ms-2"></label>
+                            <span asp-validation-for="PostalCode" class="text-danger"></span>
+                        </div>
+                        <div class=" row form-floating py-2 col-12">
+                            <input asp-for="PhoneNumber" class="form-control shadow border-0" />
+                            <label asp-for="PhoneNumber" class="control-label ms-2"></label>
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+
+                      
+                        <div class="row mt-3">
+                            <div class="col-6 col-md-3">
+                                @if (Model.Id != 0)
+                                {
+                                    <input type="submit" value="Update" class="btn btn-primary form-control" />
+                                }
+                                else
+                                {
+                                    <input type="submit" value="Create" class="btn btn-primary form-control" />
+
+                                }
+                            </div>
+                            <div class="col-6 col-md-3">
+
+                                <a asp-action="GetAllCompany" class="btn btn-secondary form-control">Back to List</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*mt-4*@
+                
+            </div>
+
+        
+
+        </form>
+
+    </div>
+ </div>
+
+
+ 
+
+
+@section Scripts {
+
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons  lists   table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | numlist bullist indent outdent',
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
